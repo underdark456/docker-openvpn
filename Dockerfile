@@ -28,5 +28,4 @@ EXPOSE 1194/udp
 EXPOSE 8080/tcp
 
 VOLUME [ "/opt/Dockovpn_data" ]
-RUN ["chmod", "+x", "./start.sh"]
 CMD [ "" ]
