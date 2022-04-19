@@ -28,6 +28,5 @@ EXPOSE 1194/udp
 EXPOSE 8080/tcp
 
 VOLUME [ "/opt/Dockovpn_data" ]
-
-ENTRYPOINT [ "dumb-init", "./start.sh" ]
+RUN ["chmod", "+x", "./start.sh"]
 CMD [ "" ]
