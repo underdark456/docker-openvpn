@@ -28,7 +28,7 @@ cd "$APP_PERSIST_DIR"
 
 LOCKFILE=.gen
 
-# Regenerate certs only on the first start 
+# Regenerate certs only on the first start
 if [ ! -f $LOCKFILE ]; then
 
     /usr/share/easy-rsa/easyrsa build-ca nopass << EOF
@@ -60,6 +60,9 @@ fi
 # Copy server keys and certificates
 cp pki/ca.crt pki/issued/MyReq.crt pki/private/MyReq.key ta.key /etc/openvpn
 
+#HOST_ADDR to client.ovpn
+echo -e "\nremote $HOST_ADDR 1194" >> "$APP_INSTALL_PATH/config/client.ovpn"
+
 cd "$APP_INSTALL_PATH"
 
 # Print app version
@@ -70,8 +73,5 @@ openvpn --config /etc/openvpn/server.conf &
 
 # By some strange reason we need to do echo command to get to the next command
 echo " "
-
-# Generate client config
-./genclient.sh $@
 
 tail -f /dev/null

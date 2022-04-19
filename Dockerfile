@@ -1,6 +1,6 @@
 FROM alpine:3.14.1
 
-LABEL maintainer="Alexander Litvinenko <array.shift@yahoo.com>"
+LABEL maintainer="QLEAN"
 
 ENV APP_NAME Dockovpn
 ENV APP_INSTALL_PATH /opt/${APP_NAME}
@@ -10,7 +10,6 @@ WORKDIR ${APP_INSTALL_PATH}
 
 COPY scripts .
 COPY config ./config
-COPY VERSION ./config
 
 RUN apk add --no-cache openvpn easy-rsa bash netcat-openbsd zip dumb-init && \
     mkdir -p ${APP_PERSIST_DIR} && \
