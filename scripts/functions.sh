@@ -31,6 +31,7 @@ function createConfig() {
 
         # Embed client authentication files into config file
         cat ${BASE_CONFIG} \
+                <(echo -e '<ca>') \
                 "$CLIENT_PATH/ca.crt" <(echo -e '</ca>\n<cert>') \
                 "$CLIENT_PATH/$1.crt" <(echo -e '</cert>\n<key>') \
                 "$CLIENT_PATH/$1.key" <(echo -e '</key>\n<tls-auth>') \
